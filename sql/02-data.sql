@@ -1,12 +1,12 @@
-INSERT INTO "user" (email, senha) VALUES ('quimica@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('ingles@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('portugues@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('geografia@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('historia@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('fisica@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('matematica@fiap.com', '123456');
-INSERT INTO "user" (email, senha) VALUES ('biologia@fiap.com', '123456');
-
+INSERT INTO "user" (email, senha) VALUES 
+('quimica@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('ingles@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('portugues@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('geografia@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('historia@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('fisica@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('matematica@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq'),
+('biologia@fiap.com', '$2a$08$N8d0rJpePiZsBmuJz776oe.3gIxojjIDNdHN5ZwluV/cwtpHyjEJq');
 INSERT INTO professor (nome, materia, user_id) VALUES 
 ('Elvis Presley', 'quimica', (SELECT id FROM "user" WHERE email = 'quimica@fiap.com')),
 ('Bon Scott', 'ingles', (SELECT id FROM "user" WHERE email = 'ingles@fiap.com')),
