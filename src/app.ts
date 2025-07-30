@@ -1,3 +1,4 @@
+import fastifyJwt from "@fastify/jwt";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 
@@ -6,18 +7,21 @@ import { env } from "./env";
 import { postRoutes } from "./http/controller/post/routes";
 import { userRoutes } from "./http/controller/user/routes";
 import { globalErrorHandler } from "./utils/global-error-handler";
-import { fakeAuth } from "./http/controller/post/middleware/fake-auth";
 
 export const app = fastify({
   logger: true,
 });
 
+// Registrar JWT
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+});
+
+// Usar fake auth apenas em desenvolvimento e quando não for produção
 if (env.ENV !== "production") {
-  app.register(fakeAuth);
+  // Comentar ou remover esta linha quando quiser testar com JWT real
+  // app.register(fakeAuth);
 }
-// app.register(fastifyJwt, {
-//   secret: env.JWT_SECRET, // coloque isso no seu .env e no env.ts
-// });
 
 app.register(fastifySwagger, {
   openapi: {
@@ -32,7 +36,19 @@ app.register(fastifySwagger, {
         description: "Local server",
       },
     ],
-    tags: [{ name: "Posts", description: "Operations related to posts" }],
+    tags: [
+      { name: "Posts", description: "Operations related to posts" },
+      { name: "Auth", description: "Authentication operations" },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
 });
 

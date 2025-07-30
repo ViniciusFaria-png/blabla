@@ -1,4 +1,3 @@
-import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials-error";
 import { makeFindProfessorByNameUseCase } from "@/use-cases/factory/make-find-professor-by-name-use-case";
 import { makeSigninUseCase } from "@/use-cases/factory/make-signin-use-case";
 import { compare } from "bcryptjs";
@@ -14,67 +13,114 @@ export async function signin(request: FastifyRequest, reply: FastifyReply) {
   try {
     const { email, senha } = signinBodySchema.parse(request.body);
 
-    console.log("=== DEBUG SIGNIN ===");
-    console.log("Email recebido:", email);
-    console.log("Senha recebida:", senha);
-
     const signinUserUseCase = makeSigninUseCase();
     const user = await signinUserUseCase.handler(email);
 
-    console.log("Usuário encontrado:", user ? "SIM" : "NÃO");
-    
     if (!user) {
-      console.log("Usuário não encontrado no banco");
       return reply.status(401).send({ message: "Email ou senha incorretos" });
     }
 
-    console.log("Hash no banco:", user.senha);
-    
     const doesPasswordMatch = await compare(senha, user.senha);
-    console.log("Senha confere:", doesPasswordMatch);
 
     if (!doesPasswordMatch) {
-      console.log("Senha não confere");
       return reply.status(401).send({ message: "Email ou senha incorretos" });
     }
 
-    // Simplificar resposta inicialmente
+    // Buscar dados do professor
+    const findProfessorByNameUseCase = makeFindProfessorByNameUseCase();
+    let professorData = null;
+
     try {
-      const findProfessorByNameUseCase = makeFindProfessorByNameUseCase();
       const professorName = await findProfessorByNameUseCase.handler(
-        user.id ? user.id : 0
+        user.id || 0
+      );
+      // Buscar o ID do professor também
+      const professorId = await findProfessorByNameUseCase.getProfessorId(
+        user.id || 0
       );
 
-      return reply.status(200).send({
-        user_id: user.id,
-        email: user.email,
-        professorName: professorName,
-        message: "Login realizado com sucesso"
-      });
+      professorData = {
+        name: professorName,
+        id: professorId,
+      };
     } catch (professorError) {
-      console.log("Erro ao buscar professor:", professorError);
-      // Retornar sucesso mesmo sem professor
-      return reply.status(200).send({
-        user_id: user.id,
-        email: user.email,
-        message: "Login realizado com sucesso"
-      });
+      console.log("Professor não encontrado para este usuário");
     }
 
+    // Gerar JWT token
+    const token = await reply.jwtSign(
+      {
+        sub: user.id,
+        email: user.email,
+        professorId: professorData?.id || null,
+        isProfessor: !!professorData,
+      },
+      {
+        expiresIn: "7d",
+      }
+    );
+
+    return reply.status(200).send({
+      user: {
+        id: user.id,
+        email: user.email,
+        professorName: professorData?.name,
+        isProfessor: !!professorData,
+      },
+      token,
+      message: "Login realizado com sucesso",
+    });
   } catch (error) {
     console.log("=== ERRO NO SIGNIN ===");
     console.log(error);
-    
+
     if (error instanceof z.ZodError) {
       return reply.status(400).send({
         message: "Dados inválidos",
         issues: error.issues,
       });
     }
-    
-    return reply.status(500).send({ 
+
+    return reply.status(500).send({
       message: "Erro interno do servidor",
-      error: error instanceof Error ? error.message : "Erro desconhecido"
+      error: error instanceof Error ? error.message : "Erro desconhecido",
     });
   }
 }
+
+export const signinSchema = {
+  summary: "User authentication",
+  tags: ["Auth"],
+  body: {
+    type: "object",
+    properties: {
+      email: { type: "string", format: "email" },
+      senha: { type: "string", minLength: 1 },
+    },
+    required: ["email", "senha"],
+  },
+  response: {
+    200: {
+      type: "object",
+      properties: {
+        user: {
+          type: "object",
+          properties: {
+            id: { type: "number" },
+            email: { type: "string" },
+            professorName: { type: "string", nullable: true },
+            isProfessor: { type: "boolean" },
+          },
+        },
+        token: { type: "string" },
+        message: { type: "string" },
+      },
+    },
+    401: {
+      type: "object",
+      properties: {
+        message: { type: "string", example: "Email ou senha incorretos" },
+      },
+    },
+  },
+};

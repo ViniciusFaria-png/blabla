@@ -45,6 +45,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 export const createPostSchema = {
   summary: "Create a new post",
   tags: ["Posts"],
+  security: [{ bearerAuth: [] }],
   body: {
     type: "object",
     properties: {
@@ -99,7 +100,17 @@ export const createPostSchema = {
       properties: {
         message: {
           type: "string",
-          example: "User not authenticated or invalid professor ID",
+          example: "Token inválido ou expirado",
+        },
+      },
+    },
+    403: {
+      type: "object",
+      properties: {
+        message: {
+          type: "string",
+          example:
+            "Acesso negado. Apenas professores podem realizar esta ação.",
         },
       },
     },

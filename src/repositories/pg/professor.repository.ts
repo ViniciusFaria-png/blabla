@@ -26,4 +26,26 @@ export class ProfessorRepository implements IProfessorRepository {
 
     return nome;
   }
+
+  async getProfessorId(userId: number): Promise<number> {
+    const result = await db.clientInstance?.query(
+      `
+      SELECT id FROM professor WHERE professor.user_id = $1
+      `,
+      [userId]
+    );
+
+    return result?.rows[0]?.id;
+  }
+
+  async findByUserId(userId: number): Promise<Professor | null> {
+    const result = await db.clientInstance?.query(
+      `
+      SELECT * FROM professor WHERE professor.user_id = $1
+      `,
+      [userId]
+    );
+
+    return result?.rows[0] || null;
+  }
 }

@@ -6,4 +6,12 @@ export class FindProfessorByNameUseCase {
   async handler(id: number) {
     return this.professorRepository.getName(id);
   }
+
+  async getProfessorId(userId: number) {
+    return this.professorRepository.getProfessorId(userId);
+  }
+
+  async findByUserId(userId: number) {
+    return this.professorRepository.findByUserId(userId);
+  }
 }
