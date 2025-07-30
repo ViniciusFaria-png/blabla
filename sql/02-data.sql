@@ -1,0 +1,114 @@
+INSERT INTO "user" (email, senha) VALUES ('quimica@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('ingles@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('portugues@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('geografia@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('historia@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('fisica@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('matematica@fiap.com', '123456');
+INSERT INTO "user" (email, senha) VALUES ('biologia@fiap.com', '123456');
+
+INSERT INTO professor (nome, materia, user_id) VALUES 
+('Elvis Presley', 'quimica', (SELECT id FROM "user" WHERE email = 'quimica@fiap.com')),
+('Bon Scott', 'ingles', (SELECT id FROM "user" WHERE email = 'ingles@fiap.com')),
+('Jimmy Page', 'portugues', (SELECT id FROM "user" WHERE email = 'portugues@fiap.com')),
+('Lemmy Kilmister', 'geografia', (SELECT id FROM "user" WHERE email = 'geografia@fiap.com')),
+('Tony Iomi', 'historia', (SELECT id FROM "user" WHERE email = 'historia@fiap.com')),
+('Bruce Dickinson', 'fisica', (SELECT id FROM "user" WHERE email = 'fisica@fiap.com')),
+('Ozzy Osbourne', 'matematica', (SELECT id FROM "user" WHERE email = 'matematica@fiap.com')),
+('Axl Rose', 'biologia', (SELECT id FROM "user" WHERE email = 'biologia@fiap.com'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Ligações Químicas: O Poder da Atração Molecular', 
+'As ligações químicas são as forças que mantêm os átomos unidos, formando moléculas e compostos.',
+'As ligações químicas são as forças fundamentais que mantêm os átomos unidos, permitindo a formação de moléculas e compostos. Existem três tipos principais de ligações: iônicas, covalentes e metálicas. As ligações iônicas ocorrem entre metais e não-metais, onde há transferência de elétrons, resultando em íons com cargas opostas que se atraem. Um exemplo clássico é o cloreto de sódio (sal de cozinha), onde o sódio perde um elétron para o cloro. As ligações covalentes, por sua vez, envolvem o compartilhamento de elétrons entre não-metais, como na molécula de água (H2O). Já as ligações metálicas são características dos metais, onde os elétrons formam um "mar" de elétrons que se movem livremente. Compreender as ligações químicas é essencial para entender como diferentes substâncias se comportam, suas propriedades físicas e químicas, e como podem ser utilizadas em aplicações práticas, desde a fabricação de medicamentos até o desenvolvimento de novos materiais.',
+(SELECT id FROM professor WHERE nome = 'Elvis Presley'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Phrasal Verbs: Dominando os Verbos Compostos do Inglês', 
+'Os phrasal verbs são combinações de verbos com preposições que criam novos significados únicos.',
+'Os phrasal verbs são uma das características mais desafiadoras e interessantes da língua inglesa. Eles consistem em verbos combinados com preposições ou advérbios que criam significados completamente novos. Por exemplo, "give up" significa desistir, enquanto "give in" significa ceder. Esses verbos compostos são extremamente comuns na linguagem cotidiana e em contextos profissionais. Existem phrasal verbs separáveis, onde o objeto pode ser colocado entre o verbo e a preposição (como "turn off the light" ou "turn the light off"), e inseparáveis, onde o objeto sempre vem após a preposição. Para dominar os phrasal verbs, é essencial praticá-los em contexto, prestando atenção ao seu uso em filmes, séries e conversas. Uma dica valiosa é agrupá-los por tema ou situação, como phrasal verbs relacionados a trabalho, relacionamentos ou tecnologia. Com dedicação e prática constante, os phrasal verbs se tornarão uma ferramenta poderosa para uma comunicação mais natural e fluente.',
+(SELECT id FROM professor WHERE nome = 'Bon Scott'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('A Riqueza dos Regionalismos na Língua Portuguesa', 
+'Os regionalismos são variações linguísticas que enriquecem e diversificam o português brasileiro.',
+'Os regionalismos são variações linguísticas que demonstram a riqueza e diversidade do português brasileiro. Cada região do Brasil desenvolveu suas próprias expressões, vocabulário e até mesmo estruturas gramaticais específicas, refletindo a história, cultura e influências locais. No Sul, por exemplo, encontramos influências do espanhol e alemão, enquanto no Nordeste há marcas do português arcaico e influências indígenas e africanas. Essas variações não devem ser vistas como "erros", mas sim como manifestações legítimas da língua viva. Palavras como "bergamota" (tangerina no Sul), "macaxeira" (mandioca no Nordeste) e "aipim" (mandioca no Sudeste) mostram como uma mesma realidade pode ser expressa de formas diferentes. Compreender e valorizar os regionalismos é fundamental para professores e estudantes, pois promove o respeito à diversidade linguística e cultural. Além disso, essa riqueza regional é uma fonte inesgotável de criatividade literária, contribuindo para a formação de uma identidade nacional plural e inclusiva.',
+(SELECT id FROM professor WHERE nome = 'Jimmy Page'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Urbanização Global: Desafios das Megacidades', 
+'A urbanização acelerada está transformando o planeta, criando megacidades com desafios únicos.',
+'A urbanização acelerada é um dos fenômenos mais marcantes do século XXI, transformando radicalmente a geografia mundial. Atualmente, mais da metade da população global vive em áreas urbanas, e essa proporção continuará crescendo. As megacidades, com mais de 10 milhões de habitantes, como Tóquio, São Paulo e Mumbai, enfrentam desafios complexos de infraestrutura, mobilidade e sustentabilidade. A concentração populacional extrema gera problemas como poluição do ar e da água, falta de moradia adequada, congestionamentos e desigualdade social. Por outro lado, as cidades também são centros de inovação, criatividade e oportunidades econômicas. O planejamento urbano sustentável tornou-se crucial, buscando soluções como transporte público eficiente, áreas verdes, edifícios sustentáveis e gestão inteligente de recursos. Compreender os padrões de urbanização é essencial para geógrafos, urbanistas e formuladores de políticas públicas, pois as decisões tomadas hoje definirão como bilhões de pessoas viverão no futuro.',
+(SELECT id FROM professor WHERE nome = 'Lemmy Kilmister'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('A Guerra Fria: Bipolarização do Mundo Pós-Guerra', 
+'A Guerra Fria dividiu o mundo em dois blocos ideológicos antagônicos por quase meio século.',
+'A Guerra Fria, que se estendeu de 1947 a 1991, foi um período de tensão geopolítica entre Estados Unidos e União Soviética, dividindo o mundo em dois blocos ideológicos opostos. Diferentemente de guerras convencionais, foi caracterizada por confrontos indiretos, corrida armamentista, espionagem e disputas por influência global. O mundo se dividiu entre o capitalismo ocidental, liderado pelos EUA, e o socialismo soviético, criando uma bipolarização que afetou todos os continentes. Eventos como a construção do Muro de Berlim, a crise dos mísseis em Cuba e a corrida espacial simbolizaram essa rivalidade. A Guerra Fria também se manifestou em conflitos regionais, como as guerras do Vietnã e do Afeganistão, onde as superpotências apoiaram lados opostos. O período terminou com a queda do Muro de Berlim em 1989 e a dissolução da URSS em 1991, encerrando uma era e dando início a uma nova ordem mundial multipolar. Compreender a Guerra Fria é essencial para entender as relações internacionais contemporâneas.',
+(SELECT id FROM professor WHERE nome = 'Tony Iomi'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Ondas Eletromagnéticas: Invisíveis mas Fundamentais', 
+'As ondas eletromagnéticas são perturbações que se propagam no espaço transportando energia.',
+'As ondas eletromagnéticas são perturbações que se propagam no espaço transportando energia, sem necessidade de um meio material para sua propagação. Elas abrangem um espectro imenso, desde ondas de rádio de baixa frequência até raios gama de altíssima energia. A luz visível representa apenas uma pequena fração deste espectro, limitada entre aproximadamente 400 e 700 nanômetros. Essas ondas são geradas por cargas elétricas em movimento e possuem propriedades fascinantes: propagam-se à velocidade da luz no vácuo, podem ser refletidas, refratadas e difratadas. As aplicações das ondas eletromagnéticas são revolucionárias: ondas de rádio para comunicações, micro-ondas para aquecimento de alimentos, raios X para diagnósticos médicos, e radiação infravermelha para visão noturna. A compreensão dessas ondas foi fundamental para o desenvolvimento de tecnologias como telefones celulares, Wi-Fi, GPS e medicina nuclear. James Clerk Maxwell, no século XIX, unificou os fenômenos elétricos e magnéticos, prevendo teoricamente a existência dessas ondas, confirmadas posteriormente por Heinrich Hertz.',
+(SELECT id FROM professor WHERE nome = 'Bruce Dickinson'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Estatística: A Arte de Interpretar Dados', 
+'A estatística é uma ferramenta poderosa para compreender padrões e tomar decisões baseadas em dados.',
+'A estatística é uma ferramenta poderosa que nos permite compreender padrões, fazer previsões e tomar decisões informadas em um mundo repleto de dados. Ela se divide em estatística descritiva, que organiza e resume informações, e estatística inferencial, que permite fazer generalizações sobre populações a partir de amostras. Conceitos como média, mediana, moda e desvio padrão nos ajudam a caracterizar conjuntos de dados. A distribuição normal, em formato de sino, é fundamental para muitas análises estatísticas. Testes de hipótese permitem verificar se diferenças observadas são estatisticamente significativas ou apenas devidas ao acaso. Na era digital, a estatística tornou-se ainda mais relevante, sendo aplicada em análise de big data, machine learning e inteligência artificial. Profissionais de diversas áreas, desde medicina até marketing, utilizam métodos estatísticos para interpretar pesquisas, avaliar tratamentos e compreender comportamentos. Desenvolver pensamento estatístico é essencial para ser um cidadão crítico, capaz de avaliar informações e não ser enganado por manipulações de dados.',
+(SELECT id FROM professor WHERE nome = 'Ozzy Osbourne'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Fotossíntese: O Processo que Sustenta a Vida na Terra', 
+'A fotossíntese é o processo biológico que converte energia solar em energia química, sustentando a vida.',
+'A fotossíntese é o processo biológico mais importante do planeta, responsável por converter energia solar em energia química e produzir o oxigênio que respiramos. Realizada principalmente pelas plantas, algas e algumas bactérias, ocorre nos cloroplastos através de duas fases distintas: as reações dependentes de luz (fase clara) e o ciclo de Calvin (fase escura). Durante a fase clara, a clorofila absorve luz solar, quebrando moléculas de água e liberando oxigênio como subproduto. A energia capturada é armazenada em moléculas de ATP e NADPH. Na fase escura, o dióxido de carbono é fixado e transformado em glicose através de uma série de reações enzimáticas. Este processo não apenas produz alimento para as plantas, mas também forma a base de todas as cadeias alimentares terrestres. A fotossíntese remove CO2 da atmosfera, ajudando a regular o clima global. Compreender este processo é fundamental para entender ecossistemas, agricultura sustentável e até mesmo estratégias para combater mudanças climáticas. Sem a fotossíntese, a vida complexa na Terra seria impossível.',
+(SELECT id FROM professor WHERE nome = 'Axl Rose'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Ácidos e Bases: Equilíbrio Químico Fundamental', 
+'Ácidos e bases são substâncias que desempenham papéis cruciais em reações químicas e processos biológicos.',
+'Ácidos e bases são substâncias fundamentais na química, presentes em inúmeros processos naturais e industriais. Segundo a teoria de Arrhenius, ácidos liberam íons H+ em solução aquosa, enquanto bases liberam íons OH-. A teoria de Brønsted-Lowry ampliou essa definição: ácidos são doadores de prótons e bases são receptores de prótons. O pH é uma escala logarítmica que mede a acidez ou basicidade de uma solução, variando de 0 a 14. Soluções com pH menor que 7 são ácidas, pH igual a 7 é neutro, e pH maior que 7 é básico. Ácidos como o clorídrico (HCl) são usados na indústria e na digestão, enquanto bases como o hidróxido de sódio (NaOH) são utilizadas em produtos de limpeza. As reações de neutralização entre ácidos e bases produzem sal e água, sendo fundamentais em processos como tratamento de água e controle de pH em piscinas. Compreender ácidos e bases é essencial para áreas como medicina, agricultura e ciências ambientais.',
+(SELECT id FROM professor WHERE nome = 'Elvis Presley'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Conditional Sentences: Expressando Possibilidades em Inglês', 
+'As conditional sentences permitem expressar situações hipotéticas e suas consequências em inglês.',
+'As conditional sentences, ou frases condicionais, são estruturas essenciais para expressar situações hipotéticas e suas possíveis consequências em inglês. Existem quatro tipos principais: zero conditional (verdades universais), first conditional (situações reais futuras), second conditional (situações hipotéticas presentes) e third conditional (situações hipotéticas passadas). O zero conditional usa presente em ambas as partes: "If water reaches 100°C, it boils." O first conditional combina presente e futuro: "If it rains tomorrow, I will stay home." O second conditional usa past simple e would: "If I won the lottery, I would travel the world." O third conditional emprega past perfect e would have: "If I had studied harder, I would have passed the exam." Essas estruturas são fundamentais para comunicação eficaz, permitindo expressar planos, desejos, arrependimentos e possibilidades. Dominar as conditionals é crucial para alcançar fluência, pois elas aparecem constantemente em conversas cotidianas, textos acadêmicos e situações profissionais.',
+(SELECT id FROM professor WHERE nome = 'Bon Scott'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Figuras de Linguagem: Recursos Expressivos da Língua', 
+'As figuras de linguagem são recursos estilísticos que enriquecem a expressão e comunicação.',
+'As figuras de linguagem são recursos estilísticos que enriquecem a expressão, criando efeitos especiais no texto e tornando a comunicação mais expressiva e persuasiva. Dividem-se em figuras de palavras, pensamento, sintaxe e som. Entre as figuras de palavras, destacam-se a metáfora, que estabelece comparações implícitas ("Meus olhos são estrelas"), e a metonímia, que substitui um termo por outro relacionado ("Bebeu o cálice todo" por "bebeu o vinho"). As figuras de pensamento incluem a ironia, que expressa o contrário do que se pensa, e a hipérbole, que exagera intencionalmente. Na sintaxe, encontramos a elipse (omissão de termos) e o pleonasmo (repetição enfática). As figuras de som, como aliteração e assonância, criam efeitos sonoros. Essas figuras são fundamentais na literatura, publicidade, discursos políticos e comunicação cotidiana. Compreendê-las desenvolve a capacidade de interpretação textual e enriquece a própria produção escrita e oral. Poetas como Carlos Drummond de Andrade e Fernando Pessoa são mestres no uso desses recursos.',
+(SELECT id FROM professor WHERE nome = 'Jimmy Page'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Placas Tectônicas: A Dinâmica da Crosta Terrestre', 
+'A teoria das placas tectônicas explica como a superfície da Terra se move e se transforma.',
+'A teoria das placas tectônicas revolucionou nossa compreensão sobre a dinâmica da Terra, explicando como a superfície terrestre se move e se transforma continuamente. A litosfera está dividida em cerca de 15 placas principais que flutuam sobre a astenosfera, camada semi-líquida do manto. Essas placas se movem alguns centímetros por ano, impulsionadas por correntes de convecção no manto. Nas bordas das placas ocorrem fenômenos geológicos significativos: nas bordas divergentes, como a Dorsal Meso-Atlântica, novo material crustal é formado; nas convergentes, uma placa mergulha sob outra, criando fossas oceânicas e cadeias montanhosas; nas transformantes, placas deslizam lateralmente, gerando terremotos. A teoria explica a distribuição de terremotos, vulcões e cadeias montanhosas, além da deriva continental proposta por Alfred Wegener. O Anel de Fogo do Pacífico, com intensa atividade sísmica e vulcânica, exemplifica essas interações. Compreender a tectônica de placas é fundamental para previsão de desastres naturais e exploração de recursos minerais.',
+(SELECT id FROM professor WHERE nome = 'Lemmy Kilmister'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Renascimento: Revolução Cultural e Científica', 
+'O Renascimento foi um período de renovação cultural que transformou a Europa entre os séculos XIV e XVI.',
+'O Renascimento foi um movimento cultural que transformou profundamente a Europa entre os séculos XIV e XVI, marcando a transição entre a Idade Média e a Idade Moderna. Iniciado nas cidades-Estado italianas como Florença e Veneza, caracterizou-se pela valorização da cultura clássica greco-romana, humanismo e racionalismo. O movimento enfatizava a dignidade humana, a busca pelo conhecimento e a experimentação científica. Artistas como Leonardo da Vinci, Michelangelo e Rafael criaram obras que ainda hoje são consideradas ícones da arte ocidental. O antropocentrismo substituiu o teocentrismo medieval, colocando o ser humano no centro das preocupações. Na ciência, figuras como Galileu Galilei e Nicolau Copérnico desafiaram concepções medievais, desenvolvendo o método científico. A invenção da imprensa por Gutenberg democratizou o conhecimento, permitindo a circulação de ideias. O Renascimento influenciou literatura, filosofia, arquitetura e política, criando bases para o mundo moderno. Suas ideias sobre individualismo, progresso e razão ainda influenciam nossa sociedade contemporânea.',
+(SELECT id FROM professor WHERE nome = 'Tony Iomi'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Energia Nuclear: Poder e Responsabilidade', 
+'A energia nuclear representa uma das formas mais poderosas de geração de energia da humanidade.',
+'A energia nuclear representa uma das conquistas mais impressionantes da física moderna, baseada na conversão de massa em energia conforme a famosa equação E=mc² de Einstein. O processo ocorre através de fissão nuclear, onde núcleos pesados como urânio-235 são bombardeados por nêutrons, dividindo-se em núcleos menores e liberando enormes quantidades de energia. Um único grama de urânio pode produzir energia equivalente a três toneladas de carvão. Em usinas nucleares, essa energia aquece água para gerar vapor que move turbinas geradoras. A energia nuclear oferece vantagens significativas: não emite gases do efeito estufa durante operação, possui alta densidade energética e pode funcionar continuamente independente de condições climáticas. Entretanto, apresenta desafios como gestão de resíduos radioativos, altos custos de construção e riscos de acidentes, como demonstrado em Chernobyl e Fukushima. Atualmente, a energia nuclear supre cerca de 10% da eletricidade mundial e é considerada fundamental para transição energética sustentável, combinando eficiência com baixas emissões de carbono.',
+(SELECT id FROM professor WHERE nome = 'Bruce Dickinson'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Matrizes: Organização e Aplicações Matemáticas', 
+'As matrizes são estruturas matemáticas fundamentais com aplicações em diversas áreas do conhecimento.',
+'As matrizes são estruturas matemáticas compostas por elementos organizados em linhas e colunas, formando um arranjo retangular de números. Elas são fundamentais na álgebra linear e possuem aplicações extraordinárias em engenharia, computação, economia e física. Uma matriz é identificada por sua dimensão m×n, onde m representa o número de linhas e n o número de colunas. Operações básicas incluem adição, subtração, multiplicação por escalar e multiplicação entre matrizes. A multiplicação matricial, embora não comutativa, é essencial para resolver sistemas lineares e transformações geométricas. Matrizes especiais como identidade, nula e transposta possuem propriedades únicas. O determinante de uma matriz quadrada indica se ela é inversível, fundamental para resolver sistemas de equações lineares. Na computação gráfica, matrizes representam rotações, translações e escalonamentos de objetos 3D. Em economia, são utilizadas para modelar relações entre variáveis. Algoritmos de machine learning dependem extensivamente de operações matriciais para processar dados e realizar previsões. Compreender matrizes é essencial para diversas carreiras tecnológicas e científicas.',
+(SELECT id FROM professor WHERE nome = 'Ozzy Osbourne'));
+
+INSERT INTO post (titulo, resumo, conteudo, professor_id) 
+VALUES ('Genética: Desvendando os Segredos da Hereditariedade', 
+'A genética estuda como características são transmitidas entre gerações através do material genético.',
+'A genética é a ciência que estuda como as características são transmitidas dos pais para os filhos através do material genético. Gregor Mendel, considerado o pai da genética, descobriu as leis fundamentais da hereditariedade estudando ervilhas. Seus experimentos revelaram conceitos como dominância, recessividade e segregação independente. O DNA (ácido desoxirribonucleico) é a molécula que carrega a informação genética, organizada em genes localizados nos cromossomos. Cada gene contém instruções para produzir proteínas específicas que determinam características do organismo. A estrutura dupla hélice do DNA, descoberta por Watson e Crick, permite sua replicação precisa durante a divisão celular. Variações genéticas, causadas por mutações, são fundamentais para evolução e diversidade biológica. A genética moderna inclui engenharia genética, terapia gênica e biotecnologia, possibilitando tratamentos para doenças genéticas e desenvolvimento de organismos modificados. Compreender genética é crucial para medicina personalizada, melhoramento de culturas agrícolas e conservação de espécies ameaçadas.',
+(SELECT id FROM professor WHERE nome = 'Axl Rose'));

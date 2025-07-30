@@ -1,0 +1,48 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Blog dinamico para ensino de ",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViniciusFaria-png/tech-challenge-fase-02.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ViniciusFaria-png/tech-challenge-fase-02/issues"
+  },
+  "homepage": "https://github.com/ViniciusFaria-png/tech-challenge-fase-02#readme",
+  "devDependencies": {
+    "@types/node": "24.0.13",
+    "@types/pg": "8.15.4",
+    "@vitest/coverage-v8": "3.2.4",
+    "tsup": "8.5.0",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3",
+    "vitest": "3.2.4"
+  },
+  "dependencies": {
+    "@fastify/jwt": "9.1.0",
+    "@fastify/swagger": "9.5.1",
+    "@fastify/swagger-ui": "5.2.3",
+    "bcryptjs": "3.0.2",
+    "dotenv": "17.2.0",
+    "fastify": "5.4.0",
+    "fastify-plugin": "5.0.1",
+    "pg": "8.16.3",
+    "zod": "4.0.5"
+  }
+}
