@@ -1,11 +1,12 @@
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
-import { fakeAuth } from "__tests__/utils/fake-auth";
+
 import fastify from "fastify";
 import { env } from "./env";
 import { postRoutes } from "./http/controller/post/routes";
 import { userRoutes } from "./http/controller/user/routes";
 import { globalErrorHandler } from "./utils/global-error-handler";
+import { fakeAuth } from "./http/controller/post/middleware/fake-auth";
 
 export const app = fastify({
   logger: true,
